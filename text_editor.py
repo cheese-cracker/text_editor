@@ -15,7 +15,7 @@ class text_editize:
   self.openbtn.grid(row=2)
   self.savebtn = Button(main, text = 'Save', command = self.saving)
   self.savebtn.grid(row=3)
-  self.delbtn = Button(main, text = 'Delete', command = self.delete_line)
+  self.delbtn = Button(main, text = 'Delete', command = self.delete_lines)
   self.delbtn.grid(row=2,column=1)
   self.fontbtn = Button(main, text = 'Font Swap',command = self.font_switch)
   self.fontbtn.grid(row=1,column=1)
@@ -57,12 +57,18 @@ class text_editize:
    f.close()
   except:
    print("Couldn't save!")
- def delete_line(self):
+ def delete_lines(self):
   try:
-   start = float(self.e.get())
-   self.text.delete(start, start+1)
+   entry = self.e.get()
+   if entry.lower() == "reset" or entry.lower() == "all":
+    self.text.delete(1.0, END)
+   elif '-' in entry:
+    entry = entry.split("-")
+    self.text.delete(float(entry[0]),float(entry[1])+1)
+   else:
+    self.text.delete(float(entry),float(entry)+1)
   except:
-   print("Specify Line!!!")
+   print("Specify Line or type 'reset' for all.")
  def font_switch(self):
    l = len(self.fonts)
    self.text.config(font=self.fonts[self.f_val%l])
