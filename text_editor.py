@@ -1,6 +1,6 @@
-from Tkinter import *
-import tkFileDialog
-import Tkinter as tk
+from tkinter import *
+from tkinter import filedialog
+import tkinter as tk
 canvas = Tk()
 
 
@@ -22,10 +22,10 @@ class text_editize:
 
     def open(self, start):
         global text
-        openlocation = tkFileDialog.askopenfilename()
+        openlocation = filedialog.askopenfilename()
         try:
-            f = open(openlocation, "rw")
-        except:
+            f = open(openlocation, "r+")
+        except BaseException:
             print("Can't open!")
             return
         self.data = f.readlines()
@@ -42,18 +42,18 @@ class text_editize:
 
     def saving(self):
         self.content = self.text.get(1.0, END)
-        savelocation = tkFileDialog.asksaveasfilename()
+        savelocation = filedialog.asksaveasfilename()
         try:
             f = open(savelocation, "w+")
             f.write(self.content)
             f.close()
-        except:
+        except BaseException:
             print("Couldn't save!")
 
     def font_switch(self, incr=1):
-        l = len(self.fonts)
+        lent = len(self.fonts)
         self.f_val += incr
-        self.text.config(font=self.fonts[self.f_val % l])
+        self.text.config(font=self.fonts[self.f_val % lent])
 
 
 # Dependant class
@@ -85,7 +85,7 @@ class dashboard:
         try:
             self.fun[self.ie[0].lower()]()
             print(self.ie[0].upper())
-        except:
+        except BaseException:
             print("No Command / Error!")
 
     def quit(self):
@@ -94,7 +94,7 @@ class dashboard:
     def open(self):
         try:
             start = float(self.ie[1])
-        except:
+        except BaseException:
             start = 0
         self.homebox.open(start)
 
