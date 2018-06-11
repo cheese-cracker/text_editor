@@ -24,7 +24,7 @@ class text_editize:
         global text
         openlocation = filedialog.askopenfilename()
         try:
-            f = open(openlocation, "rw")
+            f = open(openlocation, "r+")
         except BaseException:
             print("Can't open!")
             return
