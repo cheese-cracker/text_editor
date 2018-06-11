@@ -2,7 +2,7 @@
 This is a simple Text Editor based on vim which requires python(and tkinter). It can be used for small things. <br>
 The Text Editor contains Main text box + Command Box.<br>
 ##### General Rules-
- - Type "python text_editor.py" in the directory of the file to start(or open file in python).
+ - Type "python3 text_editor.py" in the directory of the file to start(or open file in python3).<br>For python2, use the python2 branch.
  - Press Enter button (enter key is not supported).
  - Commands that can be typed(any case) are 
     1. reset
